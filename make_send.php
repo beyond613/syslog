@@ -1,4 +1,7 @@
 <?php
+
+// 向 socket 大量发送
+
 class ALS {
 
 	static $_conn;
@@ -24,15 +27,14 @@ class ALS {
 		}
 		$sSend = ':'.$sNamespace.','.$sContent;
 		fwrite(self::$_conn, $sSend);
-		file_put_contents(__DIR__.'/'.$sNamespace, $sContent, FILE_APPEND);
 	}
 }
 
 $c = 0;
 
-foreach (range(0, 10000) as $i) {
+foreach (range(0, 100000) as $i) {
 
-	$sCategory = 'c'.mt_rand(0, 4);
+	$sCategory = 'h'.mt_rand(0, 4);
 
 	$c++;
 	$aMsg = array(
@@ -41,7 +43,7 @@ foreach (range(0, 10000) as $i) {
 	);
 	$aMsg['md5'] = md5($aMsg['content']);
 
-	echo $i.' ';
+//	echo $i.' ';
 
 	ALS::log($sCategory, $aMsg);
 }
