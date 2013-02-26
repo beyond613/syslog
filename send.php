@@ -16,6 +16,7 @@ class ALS {
 
 		list($fMtime, $iTime) = explode(' ', microtime());
 		$iMtime = $iTime * 1000 + round($fMtime * 1000, 0);
+		var_dump($mMessage);
 		fwrite(
 			self::$_conn,
 			':'.$sNamespace.','.$iMtime.','.json_encode($mMessage)."\n"
@@ -25,5 +26,5 @@ class ALS {
 
 // foreach (array(0, mt_rand(10, 20)) as $i) {
 foreach (array(0, 1) as $i) {
-	ALS::log('abc', array(date('H:i:s'), $i));
+	ALS::log('z'.mt_rand(0,3), array(date('H:i:s'), $i));
 }
