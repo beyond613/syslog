@@ -44,6 +44,9 @@ do {
 			$sBuffer = substr($sBuffer, $iPos + 1);
 
 			list($sCategory, $sMessage) = explode(',', $sLine, 2);
+			if (substr($sCategory, 0, 1) === ':') {
+				$sCategory = substr($sCategory, 1);
+			}
 
 			$aSend =& $lSend[$sCategory];
 			if (!$aSend) {
